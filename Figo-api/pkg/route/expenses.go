@@ -1,10 +1,7 @@
 package route
 
 import (
-	"figo-api/pkg/handlerRcontroller"
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/golang/figo-api/pkg/handlerRcontroller"
+	"github.com/kalpanas11/golang/figo-api/pkg/handlerRcontroller"
 )
 
 // Expenses route

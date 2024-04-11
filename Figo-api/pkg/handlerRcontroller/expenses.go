@@ -1,8 +1,9 @@
 package handlerRcontroller
 
 import (
-	"figo-api/pkg/entityRmodel"
 	"time"
+
+	"github.com/kalpanas11/figo-api/pkg/entityRmodel"
 
 	"github.com/gofiber/fiber/v2"
 )

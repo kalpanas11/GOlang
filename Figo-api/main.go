@@ -1,7 +1,7 @@
 package main
 
 import (
-	"figo-api/pkg/route"
+	"github.com/kalpanas11/figo-api/pkg/route"
 
 	"github.com/gofiber/fiber/v2"
 )
