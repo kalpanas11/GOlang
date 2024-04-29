@@ -39,7 +39,6 @@ phases:
 
   build:
     commands:
-      - cd go-form/
       - echo "Building Docker Image"
       - docker build -f Dockerfile -t "kk111/go-template-simple-form-app:latest" 
       - docker push "kk111/go-template-simple-form-app:latest" 
