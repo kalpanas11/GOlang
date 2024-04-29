@@ -40,7 +40,7 @@ phases:
   build:
     commands:
       - echo "Building Docker Image"
-      - docker build -f Dockerfile -t "docker.io/kalpana111/go-template-simple-form-app:latest" 
+      - docker build -f Dockerfile -t "docker.io/kalpana111/go-template-simple-form-app:latest" .
       - docker push "docker.io/kalpana111/go-template-simple-form-app:latest" 
   post_build:
     commands:
