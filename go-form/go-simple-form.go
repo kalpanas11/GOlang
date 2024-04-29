@@ -34,7 +34,14 @@ func emailForm() {
 		// do something with details
 		_ = details
 
-		tmpl.Execute(w, struct{ Success bool }{true})
+		//tmpl.Execute(w, struct{ Success bool }{true})
+		tmpl.Execute(w, struct {
+			Success bool
+			Email   string
+		}{
+			Success: true,
+			Email:   details.Email,
+		})
 	})
 
 	http.ListenAndServe(":8080", nil)

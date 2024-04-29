@@ -1,6 +1,6 @@
 <!-- forms.html -->
 {{if .Success}}
-    <h1>Thanks for your message!</h1>
+    <h1>Hello, {{.Email}}. Thanks for your message!</h1>
 {{else}}
     <h1>Contact</h1>
     <form method="POST">
@@ -12,8 +12,4 @@
         <textarea name="message"></textarea><br />
         <input type="submit">
     </form>
-{{end}} 
-
-
-
-
+{{end}}
