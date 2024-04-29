@@ -41,12 +41,12 @@ phases:
     commands:
       - echo "-----------Building Docker Image----------"
       # - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
-      - docker build -f Dockerfile -t "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app:latest" .
+      - docker build -f Dockerfile -t "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app" .
 
 
       - echo "-----------Pushing Docker Image----------"
       # - docker push "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" 
-      - docker push "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app:latest" 
+      - docker push "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app" 
 
   post_build:
     commands:
