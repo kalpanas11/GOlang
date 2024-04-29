@@ -42,6 +42,9 @@ phases:
       - echo "-----------Building Docker Image----------"
       # - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
       - docker build -f Dockerfile -t "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app" .
+      
+      # Log in to your Docker Hub account
+      - docker login --username $DOCKER_CRED_USERNAME --password $DOCKER_CRED_PASSWORD
 
 
       - echo "-----------Pushing Docker Image----------"
