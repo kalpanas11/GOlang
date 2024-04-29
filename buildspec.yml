@@ -4,8 +4,8 @@ env:
   variables:
     GO_VERSION: 1.22
   parameter-store:
-    DOCKER_CRED_USERNAME: "	/go-form/docker-credentials/username"
-    DOCKER_CRED_PASSWORD: "	/go-form/docker-credentials/password"
+    DOCKER_CRED_USERNAME: "/go-form/docker-credentials/username"
+    DOCKER_CRED_PASSWORD: "/go-form/docker-credentials/password"
     DOCKER_REGISTRY: "/go-form/docker-registry/url"
     
 #   exported-variables:
