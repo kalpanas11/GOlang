@@ -31,11 +31,11 @@ phases:
     # commands:
   pre_build:
     commands:
-      - echo "Installing dependencies..." 
-      - wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
-      - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
-      - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
-    #   - go get -v -u ***GO_MODULES***
+    #   - echo "Installing dependencies..." 
+    #   - wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
+    #   - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+    #   - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
+    # #   - go get -v -u ***GO_MODULES***
 
   build:
     commands:
