@@ -3,10 +3,11 @@ version: 0.2
 env:
   variables:
     GO_VERSION: 1.22
-#     key: "value"
-#   parameter-store:
-#     key: "value"
-#     key: "value"
+  parameter-store:
+    DOCKER_CRED_USERNAME: "	/go-form/docker-credentials/username"
+    DOCKER_CRED_PASSWORD: "	/go-form/docker-credentials/password"
+    DOCKER_REGISTRY: "/go-form/docker-registry/url"
+    
 #   exported-variables:
 #     - variable
 #     - variable
@@ -36,12 +37,11 @@ phases:
     #   - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
     #   - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
     # #   - go get -v -u ***GO_MODULES***
-
   build:
     commands:
       - echo "Building Docker Image"
-      - docker build -f Dockerfile -t "docker.io/kalpana111/go-template-simple-form-app:latest" .
-      - docker push "docker.io/kalpana111/go-template-simple-form-app:latest" 
+      - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
+      - docker push "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" 
   post_build:
     commands:
       - echo "Build is successful"
