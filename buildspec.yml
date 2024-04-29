@@ -39,9 +39,15 @@ phases:
     # #   - go get -v -u ***GO_MODULES***
   build:
     commands:
-      - echo "Building Docker Image"
-      - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
-      - docker push "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" 
+      - echo "-----------Building Docker Image----------"
+      # - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
+      - docker build -f Dockerfile -t "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app:latest" .
+
+
+      - echo "-----------Pushing Docker Image----------"
+      # - docker push "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" 
+      - docker push "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app:latest" 
+
   post_build:
     commands:
       - echo "Build is successful"
