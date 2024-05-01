@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "------starting container -----"
+echo "------starting container test-----"
 # Pull the Docker image from Docker Hub
  docker pull kalpana111/go-template-simple-form-app
 
