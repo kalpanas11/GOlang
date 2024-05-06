@@ -1,0 +1,11 @@
+# For virtualenv
+venv/
+
+# macOS files
+.DS_Store
+
+# Log files
+*.log
+
+# Test binary, built with `go test -c`
+*.test
