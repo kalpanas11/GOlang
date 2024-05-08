@@ -1,0 +1,97 @@
+version: 0.2
+
+env:
+  variables:
+    GO_VERSION: 1.22
+  parameter-store:
+    DOCKER_CRED_USERNAME: "/go-form/docker-credentials/username"
+    DOCKER_CRED_PASSWORD: "/go-form/docker-credentials/password"
+    DOCKER_REGISTRY: "/go-form/docker-registry/url"
+    
+#   exported-variables:
+#     - variable
+#     - variable
+#   secrets-manager:
+#     key: secret-id:json-key:version-stage:version-id
+#   git-credential-helper: no | yes
+
+# proxy:
+#   upload-artifacts: no | yes
+#   logs: no | yes
+
+# batch:
+#   fast-fail: false | true
+#   # build-list:
+#   # build-matrix:
+#   # build-graph:
+        
+phases:
+  install:
+    runtime-versions:
+      golang: 1.22
+    # commands:
+  pre_build:
+    commands:
+    #   - echo "Installing dependencies..." 
+    #   - wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
+    #   - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+    #   - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
+    # #   - go get -v -u ***GO_MODULES***
+  build:
+    commands:
+      - echo "-----------Building Docker Image----------"
+      # - docker build -f Dockerfile -t "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" .
+      - docker build -f Dockerfile -t "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app" .
+      
+      # Log in to your Docker Hub account
+      - docker login --username $DOCKER_CRED_USERNAME --password $DOCKER_CRED_PASSWORD
+
+
+      - echo "-----------Pushing Docker Image----------"
+      # - docker push "$DOCKER_REGISTRY/$DOCKER_CRED_USERNAME/go-template-simple-form-app:latest" 
+      - docker push "${DOCKER_REGISTRY}/${DOCKER_CRED_USERNAME}/go-template-simple-form-app" 
+
+  post_build:
+    commands:
+      - echo "Build is successful"
+#       - command
+#     finally:
+#       - command
+#       - command
+#     # steps:
+# reports:
+#   report-group-name-or-arn:
+#     files:
+#       - location
+#       - location
+#     base-directory: location
+#     discard-paths: no | yes
+#     file-format: report-format
+# artifacts:
+#   files:
+#     - location
+#     - location
+#   name: artifact-name
+#   discard-paths: no | yes
+#   base-directory: location
+#   exclude-paths: excluded paths
+#   enable-symlinks: no | yes
+#   s3-prefix: prefix
+#   secondary-artifacts:
+#     artifactIdentifier:
+#       files:
+#         - location
+#         - location
+#       name: secondary-artifact-name
+#       discard-paths: no | yes
+#       base-directory: location
+#     artifactIdentifier:
+#       files:
+#         - location
+#         - location
+#       discard-paths: no | yes
+#       base-directory: location
+# cache:
+#   paths:
+#     - path
+#     - path
