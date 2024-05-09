@@ -1,1 +1,107 @@
   theRandom = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+
+
+
+func Game(reader *bufio.Scanner, writer *bufio.Writer) {
+	//initialize random number generator
+	rand.Seed(time.Now().UnixNano())
+
+	//initialize valid choices
+	choices := [...]string{"rock", "paper", "scissors"}
+
+	for {
+		computerChoice := choices[rand.Intn(len(choices))]
+		fmt.Fprintf(writer, "Computer's choice: %s\n", computerChoice)
+
+		fmt.Fprint(writer, "Enter your choice (rock, paper, scissors, or 0 to exit): ")
+		reader.Scan()
+		userChoice := strings.ToLower(reader.Text())
+
+		if userChoice == "0" {
+			fmt.Fprintln(writer, "Exiting the game...")
+			writer.Flush() // Flush the writer to ensure output is written
+			break
+		}
+
+		if userChoice == computerChoice {
+			fmt.Fprintln(writer, "It's a tie!")
+		} else if (userChoice == "rock" && computerChoice == "scissors") ||
+			(userChoice == "paper" && computerChoice == "rock") ||
+			(userChoice == "scissors" && computerChoice == "paper") {
+			fmt.Fprintln(writer, "You win!")
+		} else {
+			fmt.Fprintln(writer, "Computer wins!")
+		}
+
+		writer.Flush() // Flush the writer after each iteration
+	}
+}
+
+func main() {
+	Game(bufio.NewScanner(os.Stdin), bufio.NewWriter(os.Stdout))
+}
+
+// func Game(reader *bufio.Scanner, writer *bufio.Writer) {
+
+// 	rand.Seed(time.Now().UnixNano())
+
+// 	choices := [...]string{"rock", "paper", "scissors"}
+
+// 	for {
+// 		computerChoice := choices[rand.Intn(len(choices))]
+// 		fmt.Printf("\n Computer's choice: %s\n", computerChoice)
+
+// 		userChoice := getUserChoice()
+
+// 		if userChoice == "0" {
+// 			fmt.Println("Exiting the game...")
+// 			break
+// 		}
+
+// 		if userChoice == computerChoice {
+// 			fmt.Println("It's a tie!")
+// 		} else if (userChoice == "rock" && computerChoice == "scissors") ||
+// 			(userChoice == "paper" && computerChoice == "rock") ||
+// 			(userChoice == "scissors" && computerChoice == "paper") {
+// 			fmt.Println("You win!")
+// 		} else {
+// 			fmt.Println("Computer wins!")
+// 		}
+
+// 		//writer.Flush() // Flush the writer after each iteration
+
+// 	}
+// }
+
+func getUserChoice() string {
+	var userChoice string
+	validChoices := map[string]bool{"rock": true, "paper": true, "scissors": true, "0": true}
+
+	for {
+		fmt.Print("Enter your choice (rock, paper, scissors, or 0 to exit): ")
+		fmt.Scanln(&userChoice)
+		userChoice = strings.ToLower(userChoice)
+
+		if _, ok := validChoices[userChoice]; ok {
+			break
+		}
+
+		fmt.Println("Invalid choice. Please try again.")
+	}
+	return userChoice
+}
+
+// func getUserChoice() string {
+// 	var userChoice string
+// 	for {
+// 		fmt.Print("Enter your choice (rock, paper, scissors, or 0 to exit): ")
+// 		fmt.Scanln(&userChoice)
+// 		userChoice = strings.ToLower(userChoice)
+// 		if userChoice == "0" || userChoice == "rock" || userChoice == "paper" || userChoice == "scissors" {
+// 			break
+// 		}
+// 		fmt.Println("Invalid choice. Please try again.")
+// 	}
+// 	return userChoice
+// }
